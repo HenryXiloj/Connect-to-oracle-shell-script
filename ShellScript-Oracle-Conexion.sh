@@ -2,6 +2,13 @@
 ###################################  AUTOR:  ###################################
 ################################   Henry       #################################
 
+#parameters DB
+DATABASE_USER=$1
+DATABASE_PASS=$2
+IP=$3
+SID=$4
+
+
 DATE=`date +"%d%m%y"`
 u="$USER"
 echo "User name $u"
@@ -10,6 +17,7 @@ cd /home/$u
 
 LOCATION=$PWD
 echo "path ${LOCATION}"
+
 
 #ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
 #export ORACLE_HOME
@@ -23,7 +31,7 @@ dbConexion() {
 ################################################################################       
 #$ORACLE_HOME/bin/sqlplus -s <<EOF> ${LOCATION}/log${DATE}.out
 sqlplus64 -s <<EOF> ${LOCATION}/log${DATE}.out
-system/hxi123@//localhost:1521/xe
+$DATABASE_USER/$DATABASE_PASS@//$IP:1521/$SID
 select sysdate from dual;
 
 EOF
